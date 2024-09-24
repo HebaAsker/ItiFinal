@@ -1,24 +1,18 @@
 @extends('pages.dashboard.layouts.app')
 
-@section('title', 'Update Admin Information')
+@section('title', 'Update Information')
 
 @section('content')
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
-            <h2 class="mb-4">Update Admin Information</h2>
-
-            <!-- Form to update admin information -->
-            <form method="POST" action="{{ route('update.admin.info') }}">
+            <form method="POST" action="{{ route('update.info') }}">
                 @csrf
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">Admin Details</h5>
-                    </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" id="name" class="form-control" required style="border: 2px solid #007bff; border-radius: 0.25rem;">
+                            <input type="text" name="name" id="name" class="form-control" required style="border: 2px solid #007bff; border-radius: 0.25rem;" value="{{ old('name', auth()->user()->name) }}">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -26,7 +20,7 @@
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" required style="border: 2px solid #007bff; border-radius: 0.25rem;">
+                            <input type="email" name="email" id="email" class="form-control" required style="border: 2px solid #007bff; border-radius: 0.25rem;" value="{{ old('email', auth()->user()->email) }}">
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

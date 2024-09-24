@@ -47,36 +47,4 @@ class AdminController extends Controller
     }
 
 
-
-    public function editAdminForm()
-{
-    return view('pages.dashboard.edit_admin_info');
-}
-
-public function updateAdminInfo(Request $request)
-{
-    $user_id = Auth::id();
-    $user = User::findOrFail($user_id);
-
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email,',
-        'password' => 'nullable|string|min:6|confirmed'
-    ]);
-
-    // Update user details
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
-
-    if ($request->filled('password')) {
-        $user->password = Hash::make($request->input('password'));
-    }
-
-    $user->save();
-
-    return redirect()->route('admin.info')->with('success', 'Information updated successfully.');
-}
-
-
-
 }

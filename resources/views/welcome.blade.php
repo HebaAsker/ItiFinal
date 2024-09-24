@@ -25,7 +25,15 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
+                    @if(Auth::user()->role=='admin')
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    @else
+                        <a href="{{ url('student/books') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    @endif
+                        <form action="{{ url('/logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out</button>
+                        </form>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
