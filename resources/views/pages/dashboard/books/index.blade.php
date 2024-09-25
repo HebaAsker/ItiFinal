@@ -6,7 +6,13 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
-                <h2 class="mb-4">Books List</h2>
+                <!-- Search Bar -->
+            <form method="GET" action="{{ route('books.search') }}" class="mb-4">
+                <div class="input-group" style="border: 2px solid #007bff; border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); padding: 0.5rem;">
+                    <input type="text" name="search" class="form-control form-control-lg" placeholder="Search by student ID" value="{{ request('search') }}" aria-label="Search by student ID" style="border: none;">
+                    <button class="btn btn-primary btn-lg" type="submit" style="border-radius: 0;">Search</button>
+                </div>
+            </form>
 
                 <!-- Add New Book Button -->
                 <div class="mb-3">

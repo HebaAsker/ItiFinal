@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard'); // Display dashboard route
     Route::get('students', [AdminController::class, 'getAllStudents'])->name('students'); // Display all students for admin
     Route::get('search/students', [AdminController::class, 'searchStudentById'])->name('students.search'); // Search student by id
+    Route::get('search/books', [AdminController::class, 'searchBook'])->name('books.search'); // Search book by name or author
     Route::get('books', [BookController::class, 'index'])->name('books'); // Display all books for admin
     Route::get('borrowed_books', [AdminController::class, 'getBorrowedBooks'])->name('borrowed.books'); // Display all borrowed books for admin
     Route::get('show/book/{id}', [BookController::class, 'show'])->name('book.info'); // Display specific book information for admin
@@ -30,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit/book/{id}', [BookController::class, 'edit'])->name('book.edit'); // Display edit book form page
     Route::post('update/book/{id}', [BookController::class, 'update'])->name('book.update'); // Update book info in DB
     Route::post('destroy/book/{id}', [BookController::class, 'destroy'])->name('book.destroy'); // Delete book from DB
+    Route::get('book/status', [AdminController::class, 'unborrow'])->name('book.status');
 
     //-----------------------------------------------------------------------------------------------------------------------//
 

@@ -43,10 +43,12 @@
                                         @else
                                             <td></td>
                                         @endif
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td colspan="3" class="text-center">No book found.</td>
+
+                                        <td>
+                                            @if($book->status == 'borrowed')
+                                            <a href="{{ route('book.status', ['id' => $book->id]) }}" class="btn btn-success btn-sm">Make It Avaliable</a>
+                                        @endif
+                                        </td>
                                     </tr>
                                 @endif
                             </tbody>

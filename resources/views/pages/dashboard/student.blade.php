@@ -6,7 +6,6 @@
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
-            <h2 class="mb-4">Students List</h2>
             <!-- Search Bar -->
             <form method="GET" action="{{ route('students.search') }}" class="mb-4">
                 <div class="input-group" style="border: 2px solid #007bff; border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); padding: 0.5rem;">

@@ -6,7 +6,6 @@ use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -44,6 +43,36 @@ class AdminController extends Controller
 
 
         return view('pages.dashboard.books.borrowed',compact('books'));
+    }
+
+
+    public function searchBook(Request $request)
+    {
+        $search = $request->input('search');
+
+        $books = User::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->where('author', 'LIKE', "%{$search}%")
+            ->get();
+
+        return view('pages.dashboard.books.index', compact('books'));
+    }
+
+
+    public function unborrow()
+    {
+        $book_id = request()->query('id');
+        $book = Book::findOrFail($book_id);
+
+
+        // Toggle the book status
+            $book->status = 'unborrowed';
+            $book->user_id = Auth::user()->id;
+            $book->updated_at = now();
+
+        $book->save();
+
+        return redirect()->back();
     }
 
 
